@@ -31,7 +31,7 @@ module.exports = {
       key: keyPath,
       user: "eiurur",
       host: [process.env.SSH_HOST],
-      port: [process.env.SSH_PORT],
+      port: process.env.SSH_PORT,
       ref: "origin/master",
       repo: `https://${user}:${password}+@github.com/kaziba/experess-wercker-pm2-deploy.git`,
       ssh_options: "StrictHostKeyChecking=no",
