@@ -37,7 +37,8 @@ module.exports = {
       ssh_options: "StrictHostKeyChecking=no",
       path: "/home/eiurur/express-wercker-pm2-deploy",
       "post-setup": "npm install",
-      "post-deploy": "pm2 startOrRestart ecosystem.config.js --env production"
+      "post-deploy":
+        "${which pm2} startOrRestart ecosystem.config.js --env production"
     }
   }
 };
