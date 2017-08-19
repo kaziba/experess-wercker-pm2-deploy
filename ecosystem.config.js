@@ -30,7 +30,7 @@ module.exports = {
     production: {
       key: keyPath,
       user: "eiurur",
-      host: [process.env.SSH_HOST],
+      host: process.env.SSH_HOST,
       port: process.env.SSH_PORT,
       ref: "origin/master",
       repo: `https://${user}:${password}+@github.com/kaziba/express-wercker-pm2-deploy.git`,
@@ -38,7 +38,8 @@ module.exports = {
       path: "/home/eiurur/express-wercker-pm2-deploy",
       cwd: "/home/eiurur/express-wercker-pm2-deploy/current",
       "post-setup": "npm install",
-      "post-deploy": "pm2 startOrRestart ecosystem.config.js --env production"
+      "post-deploy":
+        "npm install --production && pm2 startOrRestart ecosystem.config.js --env production"
     }
   }
 };
