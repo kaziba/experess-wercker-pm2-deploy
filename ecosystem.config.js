@@ -33,9 +33,9 @@ module.exports = {
       host: [process.env.SSH_HOST],
       port: process.env.SSH_PORT,
       ref: "origin/master",
-      repo: `https://${user}:${password}+@github.com/kaziba/experess-wercker-pm2-deploy.git`,
+      repo: `https://${user}:${password}+@github.com/kaziba/express-wercker-pm2-deploy.git`,
       ssh_options: "StrictHostKeyChecking=no",
-      path: "/home/eiurur/experess-wercker-pm2-deploy",
+      path: "/home/eiurur/express-wercker-pm2-deploy",
       "post-setup": "npm install",
       "post-deploy": "pm2 restart ecosystem.config.js --env production"
     }
