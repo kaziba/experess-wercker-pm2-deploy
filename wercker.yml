@@ -1,0 +1,47 @@
+box: node
+
+build:  
+  steps:
+    - npm-install
+    - npm-test
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+
+setup-production:  
+  steps:
+    - mktemp:
+        envvar: SSH_PRIVATE_KEY_PATH
+    - create-file:
+        name: Create private key
+        filename: $SSH_PRIVATE_KEY_PATH
+        content: $SSH_PRIVATE
+        overwrite: true
+        hide-from-log: true
+    - script:
+        name: Install pm2 package
+        code: npm install -g pm2
+    - script:
+        name: Setup production
+        code: |
+          pm2 deploy ecosystem.config.js production setup
+
+deploy-production:  
+  steps:
+    - mktemp:
+        envvar: SSH_PRIVATE_KEY_PATH
+    - create-file:
+        name: Create private key
+        filename: $SSH_PRIVATE_KEY_PATH
+        content: $SSH_PRIVATE
+        overwrite: true
+        hide-from-log: true
+    - script:
+        name: Install pm2 package
+        code: npm install -g pm2
+    - script:
+        name: Deploy production
+        code: |
+          pm2 deploy ecosystem.config.js production update
