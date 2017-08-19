@@ -38,7 +38,7 @@ module.exports = {
       path: "/home/eiurur/express-wercker-pm2-deploy",
       "post-setup": "npm install",
       "post-deploy":
-        "${which pm2} startOrRestart ecosystem.config.js --env production"
+        "export PATH=$PATH:/home/eiurur/.nvm/v8.2.1/bin/ && npm install --production && pm2 startOrRestart ecosystem.config.js --env production"
     }
   }
 };
