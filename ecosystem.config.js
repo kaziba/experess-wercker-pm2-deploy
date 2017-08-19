@@ -36,8 +36,9 @@ module.exports = {
       repo: `https://${user}:${password}+@github.com/kaziba/express-wercker-pm2-deploy.git`,
       ssh_options: "StrictHostKeyChecking=no",
       path: "/home/eiurur/express-wercker-pm2-deploy",
+      cwd: "/home/eiurur/express-wercker-pm2-deploy/current",
       "post-setup": "npm install",
-      "post-deploy": "pm2 restart ecosystem.config.js --env production"
+      "post-deploy": "pm2 startOrRestart ecosystem.config.js --env production"
     }
   }
 };
